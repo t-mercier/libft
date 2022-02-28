@@ -6,7 +6,7 @@
 #    By: tmercier <tmercier@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2021/12/02 17:13:26 by tmercier      #+#    #+#                  #
-#    Updated: 2021/12/15 17:14:20 by tmercier      ########   odam.nl          #
+#    Updated: 2022/02/28 13:48:48 by tmercier      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,9 +32,9 @@ NO_COLOR		=	\033[0m
 
 ## VARIABLES ##___________________________________________________ path macros #
 
-HEADS 			=	./includes/
+INCLUDE 		=	-I ./include/
 
-OBJ_DIR			=	./obj_files/
+OBJ_DIR			=	./obj/
 
 SRC_DIR			=	./src_files/
 
@@ -109,12 +109,12 @@ OBJ 			=	$(addprefix $(OBJ_DIR), $(SRC_NAME:.c=.o))
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(AR) $(NAME) $(OBJ)
+	@$(AR) $(NAME) $(OBJ)
 	@ranlib $(NAME)
 	@echo "\n$(GREEN)-> libft.a compiled and indexed. ✅"
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c
-	@$(CC) $(FLAGS) -c $< -o $@ -I $(HEADS)
+	@$(CC) $(FLAGS) -c $< -o $@ $(INCLUDE)
 	@echo "\033[96m	$@\033[0m"
 
 $(OBJ): | $(OBJ_DIR)
@@ -125,13 +125,12 @@ $(OBJ_DIR):
 #______________________________________________________________ cleaning rules #
 
 clean:
-	@printf "$(LIGHT_RED)\n-> deleting .o files ... from libft.\n"
-	@$(RM) $(OBJ) 
+	@if [ -d "$(OBJ_DIR)" ]; then rm -r $(OBJ_DIR); fi
+	@printf "$(LIGHT_RED)\n-> obj files removed.\n"
 
 fclean: clean
-	@printf "\n$(LIGHT_RED)-> deleting $(NAME) file ...\n"
-	@$(RM) $(NAME) 
-	@rmdir obj_files
+	@$(RM) $(NAME)
+	@printf "\n$(LIGHT_RED)-> $(NAME) removed.\n\n"
 
 re: fclean all
 
