@@ -1,8 +1,2 @@
 # libft
-
-"libft - Your very first own library"
-
-This project presents my implementation of some useful C functions from the C standard library and some additional ones. 
-This library will be used for every future projects at Codam Coding School (42 Amsterdam)
-
-Written in C and in accordance of 42 school norm.
+![Capture d’écran 2022-07-07 à 17 58 00](https://user-images.githubusercontent.com/94700601/177819514-608afc37-f443-459e-9acd-6c84eefe6bfa.png)
