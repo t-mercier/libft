@@ -13,10 +13,10 @@
 #include "libft.h"
 #include <limits.h>
 
-int	ft_atoi(const char *str)
+long	ft_atoi(const char *str)
 {
 	int	sign;
-	int	res;
+	long	res;
 
 	sign = 1;
 	res = 0;
@@ -30,7 +30,4 @@ int	ft_atoi(const char *str)
 		res = res * 10 + (*str - 0x30);
 		str++;
 	}
-	if (res > INT_MAX || res < INT_MIN)
-		return (EXIT_FAILURE);
-	return (res * sign);
 }
